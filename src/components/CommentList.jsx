@@ -13,6 +13,8 @@ class CommentList extends Component {
     comment: '',
     rate: '1',
     isLoading: true,
+    isError: false,
+    error: '',
   }
 
   getComments = (asin) => {
@@ -32,7 +34,13 @@ class CommentList extends Component {
       .then((data) => {
         this.setState({ comments: data, isLoading: false })
       })
-      .catch((err) => console.log(err))
+      .catch((err) =>
+        this.setState({
+          isError: true,
+          error: `${err}`,
+          isLoading: false,
+        })
+      )
   }
 
   deleteComment = (id) => {
@@ -49,7 +57,13 @@ class CommentList extends Component {
           throw new Error(res.status)
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) =>
+        this.setState({
+          isError: true,
+          error: `${err}`,
+          isLoading: false,
+        })
+      )
   }
 
   addComment = (e) => {
@@ -73,9 +87,17 @@ class CommentList extends Component {
             rate: '1',
           })
           this.getComments(this.props.book.asin)
+        } else {
+          throw new Error(res.status)
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) =>
+        this.setState({
+          isError: true,
+          error: `${err}`,
+          isLoading: false,
+        })
+      )
   }
 
   printStars = (n) => {
@@ -101,7 +123,11 @@ class CommentList extends Component {
                 <Spinner animation="border" variant="danger" />
               </div>
             )}
-            {this.state.comments.length === 0 && !this.state.isLoading ? (
+            {this.state.isError ? (
+              <h1 className="text-center text-danger">{this.state.error}</h1>
+            ) : this.state.comments.length === 0 &&
+              !this.state.isLoading &&
+              !this.state.isError ? (
               <h1 className="text-center text-secondary">
                 Non ci sono commenti.
               </h1>
