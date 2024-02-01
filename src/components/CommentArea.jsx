@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import CommentList from './CommentList'
-import AddComment from './AddComment'
 
 const CommentArea = function (props) {
   const [show, setShow] = useState(false)
@@ -23,12 +21,7 @@ const CommentArea = function (props) {
         <Modal.Body>
           <Container>
             <Row>
-              <Col xs={7} className="border-end">
-                <CommentList book={props.book} />
-              </Col>
-              <Col xs={5}>
-                <AddComment book={props.book} />
-              </Col>
+              <CommentList book={props.book} />
             </Row>
           </Container>
         </Modal.Body>
