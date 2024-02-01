@@ -116,7 +116,7 @@ class CommentList extends Component {
   render() {
     return (
       <>
-        <Col xs={7} className="border-end">
+        <Col xs={12} lg={7} className="border-end">
           <div className="my-3 h-75">
             {this.state.isLoading && (
               <div className="h-100 d-flex flex-column justify-content-center align-items-center">
@@ -152,7 +152,7 @@ class CommentList extends Component {
             )}
           </div>
         </Col>
-        <Col xs={5}>
+        <Col xs={12} lg={5}>
           <Form
             className="d-flex flex-column justify-content-between h-100"
             onSubmit={this.addComment}
