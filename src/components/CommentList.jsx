@@ -32,6 +32,7 @@ class CommentList extends Component {
         }
       })
       .then((data) => {
+        console.log(data)
         this.setState({ comments: data, isLoading: false })
       })
       .catch((err) =>
@@ -132,11 +133,11 @@ class CommentList extends Component {
                 Non ci sono commenti.
               </h1>
             ) : (
-              this.state.comments.map((el, i) => (
+              this.state.comments.map((el) => (
                 <div key={el._id}>
                   <div className="d-flex justify-content-between">
                     <p>
-                      <span className="fw-semibold me-2">Utente {i + 1}</span>
+                      <span className="fw-semibold me-2">{el.author}</span>
                       {this.printStars(el.rate)}
                     </p>
                     <Button
