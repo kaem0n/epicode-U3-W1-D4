@@ -8,7 +8,7 @@ const API_KEY =
 class AddComment extends Component {
   state = {
     comment: '',
-    rate: '',
+    rate: '1',
     elementId: this.props.book.asin,
   }
 
